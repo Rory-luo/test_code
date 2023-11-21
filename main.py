@@ -6,6 +6,7 @@ import requests
 import os
 import random
 import json
+from bs4 import BeautifulSoup
 
 nowtime = datetime.utcnow() + timedelta(hours=8)  # 东八区时间
 today = datetime.strptime(str(nowtime.date()), "%Y-%m-%d")  # 今天的日期
