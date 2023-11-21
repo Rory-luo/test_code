@@ -7,13 +7,13 @@ on:
 jobs:
   send_message:
     runs-on: ubuntu-latest
-    name: Give girlfriend a morning information
+    name: TEST THE DEMO
 
     steps:
     - name: checkout
       uses: actions/checkout@v3
       with:
-        ref: Morning
+        ref: test
 
     - name: sender
       uses: actions/setup-python@v2
