@@ -1,0 +1,38 @@
+name: Morning_Clock
+on:
+  schedule:
+  - cron:  '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  send_message:
+    runs-on: ubuntu-latest
+    name: Give girlfriend a morning information
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+      with:
+        ref: Morning
+
+    - name: sender
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+        architecture: 'x64'
+    - run: pip install -r ./requirements.txt && python ./main.py
+
+    env:
+      APP_ID: ${{ secrets.APP_ID }}
+      APP_SECRET: ${{ secrets.APP_SECRET }}
+      TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
+      AFTER_TEMPLATE_ID: ${{ secrets.AFTER_TEMPLATE_ID }}
+      USER_ID: ${{ secrets.USER_ID }}
+      START_DATE: ${{ secrets.START_DATE }}
+      BIRTHDAY: ${{ secrets.BIRTHDAY }}
+      CITY: ${{ secrets.CITY }}
+      CITY_LOCATION_DICT: ${{ secrets.CITY_LOCATION_DICT }}
+      PERIOD: ${{ secrets.PERIOD }}
+      END_WORDS: ${{ secrets.END_WORDS }}
+      UV_KEY: ${{ secrets.UV_KEY }}
+      
