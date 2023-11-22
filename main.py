@@ -41,9 +41,17 @@ def catch_holiday():
         countdown_element = soup.find('div', class_='J_countdown')
 
         if countdown_element:
-            # Extract countdown information
-            countdown_text = countdown_element.get_text(strip=True)
-            return countdown_text
+            # Extract holiday name and countdown days
+            holiday_name = countdown_element.find('strong').text.strip()
+            countdown_days = countdown_element.find('span', class_='time day').text.strip()
+            
+            result = f"距离 {holiday_name} 还有{countdown_days}天"
+            return result
+        
+        # if countdown_element:
+        #     # Extract countdown information
+        #     countdown_text = countdown_element.get_text(strip=True)
+        #     return countdown_text
         else:
             print("Countdown element not found on the page.")
             return exit(502)
